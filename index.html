@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini quiz</title>
+    <style>
+        body {
+            background-color: rgb(5, 69, 90);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 30px;
+        }
+
+        .painel {
+            background-color: rgb(128, 153, 238);
+            width: 500px;
+            height: auto;
+            border-radius: 20px;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        h3, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .botoes {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            margin-top: 20px;
+        }
+        
+        button {
+            height: 40px;
+            width: 80px;
+            background-color: blue;
+            border: 1px solid white;
+            border-radius: 10px;
+            color: whitesmoke;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+    
+        .pagina {
+            display: none;
+        }
+        .pagina.ativa {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div id="pagina-1" class="painel pagina ativa"> 
+        <h3>Você é programador(a)?</h3>
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExODg3bGZ4MnVhd2hkNXR0cWg5YWxqdmc1Zjhtc25nYXltbXRlazVrMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif" alt="[Imagem de uma pessoa programando]">
+        <div class="botoes">
+            <button onclick="navegarPara('pagina-2')">Sim</button>
+            <button onclick="navegarPara('pagina-triste')">Não</button>
+        </div>
+    </div>
+
+    
+    <div id="pagina-2" class="painel pagina"> 
+        <h3>Você programa em Java?</h3>
+        <img src="https://www.svgrepo.com/show/303388/java-4-logo.svg" alt="[Imagem do logo Java]">
+        <div class="botoes">
+            <button onclick="navegarPara('pagina-final', 'Java')">Sim</button>
+            <button onclick="navegarPara('pagina-3')">Não</button>
+        </div>
+    </div>
+
+     <div id="pagina-3" class="painel pagina"> 
+        <h3>Você programa em Javascript?</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="[Imagem do logo Javascript]">
+        <div class="botoes">
+            <button onclick="navegarPara('pagina-final', 'Javascript')">Sim</button>
+            <button onclick="navegarPara('pagina-3')">Não</button>
+        </div>
+    </div>
+    
+    
+    <div id="pagina-4" class="painel pagina"> 
+        <h3>Você programa em PHP?</h3>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLGIEDmHwvNss_HhFin5ErHSOf0-sgLLAV3A&s" alt="[Imagem do logo PHP]">
+        <div class="botoes">
+            <button onclick="navegarPara('pagina-final', 'PHP')">Sim</button>
+            <button onclick="navegarPara('pagina-4')">Não</button>
+        </div>
+    </div>
+    
+    
+    <div id="pagina-5" class="painel pagina"> 
+        <h3>Você programa em Assembly?</h3>
+        <img src="https://i.pinimg.com/736x/25/a8/5d/25a85d9e5057430d82273a3c75e73014.jpg" alt="[Imagem do logo Assembly]">
+        <div class="botoes">
+            <button onclick="navegarPara('pagina-assembly-final')">Sim</button>
+            <button onclick="navegarPara('pagina-triste')">Não</button>
+        </div>
+    </div>
+
+
+    <div id="pagina-final" class="painel pagina"> 
+        <h2 id="mensagem-final"></h2>
+        <img src="https://media.tenor.com/NCRHhqkXrJYAAAAj/programmers-go-internet.gif" alt="[Imagem de um programador]">
+        <div class="botoes">
+            <button onclick="navegarPara('pagina-1')">Voltar</button>
+        </div>
+    </div>
+
+    <div id="pagina-triste" class="painel pagina">
+        <h2>Poxa que pena, esse site não é pra você</h2>
+        <div class="botoes">
+            <button onclick="navegarPara('pagina-1')">Voltar</button>
+        </div>
+    </div>
+
+    
+    <div id="pagina-assembly-final" class="painel pagina"> 
+        <h2>Vá embora</h2>
+        <img src="https://somaticmovementcenter.com/wp-content/uploads/2012/03/skeleton-at-computer.jpg" alt="[Imagem de um esqueleto em um computador]">
+        <div class="botoes">
+            <button onclick="navegarPara('pagina-1')">Voltar</button>
+        </ssdiv>
+    </div>
+
+    <script>
+    
+        function navegarPara(idDaPagina, linguagem = null) {
+            
+            const paginas = document.querySelectorAll('.pagina');
+            
+            
+            paginas.forEach(pagina => {
+                pagina.classList.remove('ativa');
+            });
+            
+            
+            const paginaAtual = document.getElementById(idDaPagina);
+            if (paginaAtual) {
+                paginaAtual.classList.add('ativa');
+            }
+
+            
+            if (idDaPagina === 'pagina-final' && linguagem) {
+                const mensagemFinal = document.getElementById('mensagem-final');
+                mensagemFinal.innerText = "Parabéns, sucesso com {linguagem}!";
+            }
+        }
+    </script>
+
+</body>
+</html>

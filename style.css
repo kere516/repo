@@ -1,0 +1,53 @@
+body{
+           background-color: lightblue;
+        }
+
+        .painel{
+            background-color: silver;
+            margin: auto;
+            width: 50Opx;
+            height:500px;
+            border-radius: 20px;
+            text-align: center;
+            padding-top: 50px;
+            font-family:'Times New Roman';
+        }
+
+        #title{
+            background-color: silver;
+            margin: auto;
+            width: 50Opx;
+            height:500px;
+            border-radius: 20px;
+            text-align: center;
+            padding-top: 50px;
+            font-family:'Times New Roman';
+        }
+
+
+
+
+        #sim{
+            position:  absolute;
+            height: 40px;
+            width: 60px;
+            background-color: blue;
+            border: white;
+            border-radius: 10px;
+            color: red;
+        }
+        
+        #nao{
+            position:  absolute;
+            height: 40px;
+            width: 60px;
+            background-color: blue;
+            border: white;
+            border-radius: 10px;
+            color: whitesmoke;
+            margin-left: 70px;
+        }
+
+        #img{
+
+        }
