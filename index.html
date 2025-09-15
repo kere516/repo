@@ -3,174 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini quiz</title>
+    <title>Catálogo de Produtos - Fake Store</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+        /* Estilos Gerais */
         body {
-            background-color: rgb(5, 69, 90);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f9;
             margin: 0;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 30px;
-        }
-
-        .painel {
-            background-color: rgb(128, 153, 238);
-            width: 500px;
-            height: auto;
-            border-radius: 20px;
-            text-align: center;
-            padding: 50px 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        h3, h2 {
+            padding: 20px;
             color: #333;
-            margin-bottom: 20px;
         }
-        
-        .botoes {
-            display: flex;
-            justify-content: center;
-            gap: 70px;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        /* Estilo do Loading */
+        #loading {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #7f8c8d;
+        }
+
+        /* Grid de Produtos */
+        #product-grid {
+            display: grid;
+            /* Cria colunas responsivas: preenche com o máximo de colunas de 280px que couberem */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
             margin-top: 20px;
         }
-        
-        button {
-            height: 40px;
-            width: 80px;
-            background-color: blue;
-            border: 1px solid white;
+
+        /* Estilo de Cada Card de Produto */
+        .product-card {
+            background-color: white;
             border-radius: 10px;
-            color: whitesmoke;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Garante que a imagem não saia do card */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        button:hover {
-            transform: scale(1.05);
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-    
-        .pagina {
-            display: none;
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain; /* Ajusta a imagem sem distorcer */
+            padding: 10px;
+            background-color: #fff;
         }
-        .pagina.ativa {
-            display: block;
+
+        .product-info {
+            padding: 20px;
+            text-align: left;
         }
+
+        .product-card h3 {
+            font-size: 1.1em;
+            margin: 0 0 10px 0;
+            height: 44px; /* Fixa a altura para 2 linhas de texto */
+            overflow: hidden;
+        }
+
+        .product-card .price {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+
     </style>
 </head>
 <body>
 
-    
-    <div id="pagina-1" class="painel pagina ativa"> 
-        <h3>Você é programador(a)?</h3>
-        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExODg3bGZ4MnVhd2hkNXR0cWg5YWxqdmc1Zjhtc25nYXltbXRlazVrMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif" alt="[Imagem de uma pessoa programando]">
-        <div class="botoes">
-            <button onclick="navegarPara('pagina-2')">Sim</button>
-            <button onclick="navegarPara('pagina-triste')">Não</button>
-        </div>
-    </div>
+    <div class="container">
+        <h1>Nossos Produtos</h1>
 
-    
-    <div id="pagina-2" class="painel pagina"> 
-        <h3>Você programa em Java?</h3>
-        <img src="https://www.svgrepo.com/show/303388/java-4-logo.svg" alt="[Imagem do logo Java]">
-        <div class="botoes">
-            <button onclick="navegarPara('pagina-final', 'Java')">Sim</button>
-            <button onclick="navegarPara('pagina-3')">Não</button>
-        </div>
-    </div>
+        <div id="loading">Carregando produtos...</div>
 
-     <div id="pagina-3" class="painel pagina"> 
-        <h3>Você programa em Javascript?</h3>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="[Imagem do logo Javascript]">
-        <div class="botoes">
-            <button onclick="navegarPara('pagina-final', 'Javascript')">Sim</button>
-            <button onclick="navegarPara('pagina-4')">Não</button>
-        </div>
-    </div>
-    
-    
-    <div id="pagina-4" class="painel pagina"> 
-        <h3>Você programa em PHP?</h3>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLGIEDmHwvNss_HhFin5ErHSOf0-sgLLAV3A&s" alt="[Imagem do logo PHP]">
-        <div class="botoes">
-            <button onclick="navegarPara('pagina-final', 'PHP')">Sim</button>
-            <button onclick="navegarPara('pagina-5')">Não</button>
-        </div>
-    </div>
-    
-    
-    <div id="pagina-5" class="painel pagina"> 
-        <h3>Você programa em Assembly?</h3>
-        <img src="https://i.pinimg.com/736x/25/a8/5d/25a85d9e5057430d82273a3c75e73014.jpg" alt="[Imagem do logo Assembly]">
-        <div class="botoes">
-            <button onclick="navegarPara('pagina-assembly-final')">Sim</button>
-            <button onclick="navegarPara('pagina-triste')">Não</button>
-        </div>
-    </div>
-
-
-    <div id="pagina-final" class="painel pagina"> 
-        <h2 id="mensagem-final"></h2>
-        <img src="https://media.tenor.com/NCRHhqkXrJYAAAAj/programmers-go-internet.gif" alt="[Imagem de um programador]">
-        <div class="botoes">
-            <button onclick="navegarPara('pagina-1')">Voltar</button>
-        </div>
-    </div>
-
-    <div id="pagina-triste" class="painel pagina">
-        <h2>Poxa que pena, esse site não é pra você</h2>
-        <div class="botoes">
-            <button onclick="navegarPara('pagina-1')">Voltar</button>
-        </div>
-    </div>
-
-    
-    <div id="pagina-assembly-final" class="painel pagina"> 
-        <h2>Vá embora</h2>
-        <img src="https://somaticmovementcenter.com/wp-content/uploads/2012/03/skeleton-at-computer.jpg" alt="[Imagem de um esqueleto em um computador]">
-        <div class="botoes">
-            <button onclick="navegarPara('pagina-1')">Voltar</button>
-        </ssdiv>
+        <div id="product-grid"></div>
     </div>
 
     <script>
-    
-        function navegarPara(idDaPagina, linguagem = null) {
-            
-            const paginas = document.querySelectorAll('.pagina');
-            
-            
-            paginas.forEach(pagina => {
-                pagina.classList.remove('ativa');
-            });
-            
-            
-            const paginaAtual = document.getElementById(idDaPagina);
-            if (paginaAtual) {
-                paginaAtual.classList.add('ativa');
-            }
+        // URL da Fake Store API que retorna uma lista de produtos
+        const apiUrl = 'https://fakestoreapi.com/products';
 
-            
-            if (idDaPagina === 'pagina-final' && linguagem) {
-                const mensagemFinal = document.getElementById('mensagem-final');
-                mensagemFinal.innerText = `Parabéns, sucesso com ${linguagem}!`;
+        // Pega as referências dos elementos HTML que vamos manipular
+        const productGrid = document.getElementById('product-grid');
+        const loadingIndicator = document.getElementById('loading');
+
+        // Função assíncrona para buscar e exibir os produtos
+        async function fetchAndDisplayProducts() {
+            // O bloco try...catch...finally é ótimo para lidar com requisições
+            try {
+                // 1. FAZ A REQUISIÇÃO
+                // Usa o fetch para buscar os dados na URL da API e espera (await) a resposta
+                const response = await fetch(apiUrl);
+
+                // Se a resposta não for bem-sucedida (ex: servidor fora do ar), lança um erro
+                if (!response.ok) {
+                    throw new Error(`Erro na requisição: ${response.status}`); 
+                }
+
+                // 2. CONVERTE OS DADOS
+                // Converte a resposta em formato JSON e espera (await) a conversão
+                const products = await response.json();
+
+                // 3. EXIBE OS DADOS
+                displayProducts(products);
+
+            } catch (error) {
+                // Se qualquer erro ocorrer no bloco 'try', ele será capturado aqui
+                console.error("Falha ao buscar produtos:", error);
+                productGrid.innerHTML = '<p>Não foi possível carregar os produtos. Tente novamente mais tarde.</p>';
+            } finally {
+                // 4. LIMPEZA
+                // O bloco 'finally' sempre é executado, com ou sem erro.
+                // É o lugar perfeito para esconder o indicador de "Carregando...".
+                loadingIndicator.style.display = 'none';
             }
         }
-    </script>
 
+        // Função que recebe a lista de produtos e a transforma em HTML
+        function displayProducts(products) {
+            // Limpa o grid caso já tenha algo (não é necessário aqui, mas é uma boa prática)
+            productGrid.innerHTML = '';
+
+            // Usa o método .map() para transformar cada objeto 'product' do array em uma string HTML
+            const productCards = products.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.title}">
+                    <div class="product-info">
+                        <h3>${product.title}</h3>
+                        <p class="price">R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+                    </div>
+                </div>
+            `).join(''); // O .join('') junta todos os HTMLs do array em uma única string gigante
+
+            // Insere a string gigante de HTML dentro do nosso grid
+            productGrid.innerHTML = productCards;
+        }
+
+        // Chama a função principal para iniciar o processo assim que a página carregar
+        fetchAndDisplayProducts();
+    </script>
 </body>
 </html>
